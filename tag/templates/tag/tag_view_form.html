@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+    <h2>tags</h2>
+{% block conteudo %}
+    <table class="tableizer-table">
+      {% block content %}
+        <thead>
+        <tr class="tableizer-firstrow">
+
+            <th>Tag Name</th>
+            <th>Unit</th>
+            <th>Decimal places</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+             {% for tag in object_list %}
+             <tr>
+               <td> <a href="/tag/update/{{ tag.id }}">{{ tag.name}}</a></td>
+               <td> {{ tag.unit}}</td>
+               <td> {{ tag.decimal_places}}</td>
+               <td><a href= "/tag/delete/{{ tag.id }}">delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      {% end block %}
+  </table>
+  <form action="create/">
+      <input type="submit" value="New Tag" />
+  </form>

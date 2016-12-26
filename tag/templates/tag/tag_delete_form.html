@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}{{ form_title }} {% endblock %}
+
+{% block conteudo %}
+<div class="dl-horizontal">
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Delete" />
+</form>
+<form action="/tag/" >
+    <input type="submit" value="Cancel" />
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+
+    <h2>tags</h2>
+
+    <style type="text/css">
+    	table.tableizer-table {
+    		font-size: 12px;
+    		border: 1px solid #CCC;
+    		font-family: Arial, Helvetica, sans-serif;
+    	}
+    	.tableizer-table td {
+    		padding: 4px;
+    		margin: 3px;
+    		border: 1px solid #CCC;
+    	}
+    	.tableizer-table th {
+    		background-color: #104E8B;
+    		color: #FFF;
+    		font-weight: bold;
+    	}
+    </style>
+
+    <table class="tableizer-table">
+          {% block content %}
+        <thead>
+        <tr class="tableizer-firstrow">
+            <th>Form Name</th>
+            <th>Parent Form Name</th>
+          </tr>
+        </thead>
+        <tbody>
+              <tr>
+              {% for form in object_list %}
+              <td> <a href="/form/update/{{ form.id }}">{{ form.name}}</a></td>
+              <td> {{ form.parent.name}}</td>
+
+        </tr>
+          {% endfor %}{% endblock %}
+    </tbody>
+
+  </table>
+  
+  {% load mptt_tags %}
+<ul>
+    {% recursetree nodes %}
+        <li>
+            {{ node.name }}
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    {{ children }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endrecursetree %}
+</ul>
+  <form action="create/">
+      <input type="submit" value="New Form" />
+  </form>
